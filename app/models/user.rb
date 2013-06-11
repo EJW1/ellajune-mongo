@@ -1,6 +1,13 @@
 class User
   include Mongoid::Document
   has_many :comments
+  field :first_name, :type => String
+  field :last_name, :type => String
+  field :birthday, :type => Date
+  field :website, :type => String
+  field :zipcode, :type => Integer
+  field :interests, :type => Array
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
