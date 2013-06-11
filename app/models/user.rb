@@ -5,8 +5,10 @@ class User
   field :last_name, :type => String
   field :birthday, :type => Date
   field :website, :type => String
+  field :location, :type => String
   field :zipcode, :type => Integer
   field :interests, :type => Array
+  validates_presence_of :first_name, :interests, :location
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
