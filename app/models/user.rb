@@ -9,6 +9,7 @@ class User
   field :zipcode, :type => Integer
   field :interests, :type => Array
   validates_presence_of :first_name, :location
+  validates_uniqueness_of :email, :case_sensitive => false
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

@@ -5,6 +5,7 @@ Ellajune::Application.routes.draw do
   root :to => "static_pages#home"
 
   devise_for :users
+    resources :users, :only => [:show, :index]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
