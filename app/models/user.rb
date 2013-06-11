@@ -8,7 +8,7 @@ class User
   field :location, :type => String
   field :zipcode, :type => Integer
   field :interests, :type => Array
-  validates_presence_of :first_name, :interests, :location
+  validates_presence_of :first_name, :location
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
