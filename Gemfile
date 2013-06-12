@@ -36,7 +36,7 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
-
+gem "mongoid_slug"
 gem "thin", ">= 1.5.0"
 gem "mongoid", ">= 3.1.2"
 gem "rspec-rails", ">= 2.12.2", :group => [:development, :test]
