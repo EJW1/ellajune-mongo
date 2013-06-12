@@ -4,15 +4,14 @@ class User
   include Mongoid::Slug
   has_many :comments
   field :username, :type => String
-  slug :username
-  field :first_name, :type => String
-  field :last_name, :type => String
+  slug  :username
+  field :name, :type => String
   field :birthday, :type => Date
   field :website, :type => String
   field :location, :type => String
   field :zipcode, :type => Integer
   field :interests, :type => Array
-  validates_presence_of :first_name, :location
+  validates_presence_of :name, :location
   validates_uniqueness_of :email, :case_sensitive => false
   validates_uniqueness_of :username, :case_sensitive => false
 
@@ -56,5 +55,13 @@ class User
 
   def find_user
     user = User.find params[:user_id]
+  end
+
+  def self.search(search)
+    if search
+      @users = User.where(name: search)
+    else
+      @users = User.all
+    end
   end
 end
