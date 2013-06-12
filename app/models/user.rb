@@ -14,6 +14,7 @@ class User
   field :interests, :type => Array
   validates_presence_of :first_name, :location
   validates_uniqueness_of :email, :case_sensitive => false
+  validates_uniqueness_of :username, :case_sensitive => false
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -52,4 +53,8 @@ class User
 
   ## Token authenticatable
   # field :authentication_token, :type => String
+
+  def find_user
+    user = User.find params[:user_id]
+  end
 end
