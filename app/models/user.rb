@@ -3,6 +3,8 @@ class User
   include Mongoid::MultiParameterAttributes
   include Mongoid::Slug
   has_many :comments
+  field :username, :type => String
+  slug :username
   field :first_name, :type => String
   field :last_name, :type => String
   field :birthday, :type => Date
