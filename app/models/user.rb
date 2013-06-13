@@ -59,7 +59,7 @@ class User
 
   def self.search(search)
     if search
-      @users = User.where(name: search)
+      @users = User.where(name: /^#{search}/i)
     else
       @users = User.all
     end
