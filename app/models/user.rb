@@ -17,7 +17,7 @@ class User
   field :country, :type => String
   field :zipcode, :type => String
   field :interests, :type => Array
-  validates_presence_of :name, :location
+  validates_presence_of :name
   validates_uniqueness_of :email, :case_sensitive => false
   validates_uniqueness_of :username, :case_sensitive => false
 
@@ -67,9 +67,11 @@ class User
     user = User.find params[:user_id]
   end
 
-  def self.search(search)
-    if search
-      @users = User.where(name: /^#{search}/i)
+  def self.search(params)
+    if params[:name]
+      @users = User.where(name: /^#{name}/i)
+    # if params[:search]
+    #   @users = User.near(search, 50)   
     else
       @users = User.all
     end
