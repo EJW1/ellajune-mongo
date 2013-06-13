@@ -2,14 +2,20 @@ class User
   include Mongoid::Document
   include Mongoid::MultiParameterAttributes
   include Mongoid::Slug
+  include Geocoder::Model::Mongoid
+  geocoded_by :address              
+  after_validation :geocode  
   has_many :comments
   field :username, :type => String
   slug  :username
   field :name, :type => String
   field :birthday, :type => Date
   field :website, :type => String
-  field :location, :type => String
-  field :zipcode, :type => Integer
+  field :coordinates, :type => Array
+  field :city, :type => String
+  field :state, :type => String
+  field :country, :type => String
+  field :zipcode, :type => String
   field :interests, :type => Array
   validates_presence_of :name, :location
   validates_uniqueness_of :email, :case_sensitive => false
@@ -52,6 +58,10 @@ class User
 
   ## Token authenticatable
   # field :authentication_token, :type => String
+
+  def address
+    [city, state, country].compact.join(', ')
+  end
 
   def find_user
     user = User.find params[:user_id]
