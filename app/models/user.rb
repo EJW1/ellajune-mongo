@@ -6,6 +6,7 @@ class User
   geocoded_by :address              
   after_validation :geocode  
   has_many :comments
+  has_many :posts
   field :username, :type => String
   slug  :username
   field :name, :type => String
