@@ -37,6 +37,15 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def edit
+    @post = Post.find(params[:id])
+    if @post.user.id == current_user.id
+      current_user = @post.user
+    else
+      redirect_to :back, :alert => "You can only edit posts that you created."
+    end
+  end
+
   # POST /posts
   # POST /posts.json
   def create
@@ -71,13 +80,14 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1
   # DELETE /posts/1.json
-  def destroy
-    @post = Post.find(params[:id])
-    @post.destroy
 
-    respond_to do |format|
-      format.html { redirect_to posts_url }
-      format.json { head :no_content }
+  def destroy
+    @post= Post.find(params[:id])
+    if @post.user.id == current_user.id
+      @post.destroy
+      redirect_to root_path
+    else
+      redirect_to :back, :alert => "You can only delete posts that you created."
     end
   end
 end
