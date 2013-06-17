@@ -53,7 +53,6 @@
   # POST /posts.json
   def create
     @post = current_user.posts.create(params[:post])
-    binding.pry
 
     respond_to do |format|
       if @post.save
