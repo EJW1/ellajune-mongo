@@ -8,7 +8,7 @@ class User
   has_many :comments
   has_many :posts
   field :username, :type => String
-  slug  :username
+  slug  :username, :history => true
   field :name, :type => String
   field :birthday, :type => Date
   field :website, :type => String
