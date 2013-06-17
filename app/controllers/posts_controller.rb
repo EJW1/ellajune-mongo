@@ -1,4 +1,7 @@
-class PostsController < ApplicationController
+ class PostsController < ApplicationController
+  include Devise::Controllers::Helpers
+  before_filter :authenticate_user!, :only => [:new, :create, :edit, :destroy]
+
   # GET /posts
   # GET /posts.json
   def index
@@ -50,6 +53,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = current_user.posts.create(params[:post])
+    binding.pry
 
     respond_to do |format|
       if @post.save
